@@ -9,6 +9,7 @@ namespace CMSWebUI.Models.ShopModels
 
         [Display(Name ="Category Title")]
         [StringLength(150)]
+        [Required]
         public string Name { get; set; }
 
         public Category()

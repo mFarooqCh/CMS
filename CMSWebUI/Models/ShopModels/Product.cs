@@ -8,15 +8,19 @@ namespace CMSWebUI.Models.ShopModels
         public string Id { get; set; }
 
         [StringLength(100)]
-        [Display(Name ="Product Title")]
+        [Display(Name ="Product Name")]
         [Required]
         public string Title { get; set; }
 
         [Range(0,1000)]        
         public string Price { get; set; }
-        public string Category { get; set; } 
+
+        public string CategoryId { get; set; }
+
         public string Description { get; set; }
-        public string Image { get; set; }
+
+        [Display(Name ="Product Pic")]
+        public string PictureName { get; set; }
 
         public Product()
         {

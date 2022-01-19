@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CMSWebUI.Models.ShopModels;
 
 namespace CMSWebUI.Data
 {
@@ -12,5 +13,7 @@ namespace CMSWebUI.Data
             : base(options)
         {
         }
+        public DbSet<CMSWebUI.Models.ShopModels.Product> Product { get; set; }
+        public DbSet<CMSWebUI.Models.ShopModels.Category> Category { get; set; }
     }
 }

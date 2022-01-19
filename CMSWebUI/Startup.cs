@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +36,14 @@ namespace CMSWebUI
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            /*** 
+             * AutoValidateAntiforgeryTokenAttribute allows to apply Anti - forgery token validation globally to all  unsafe methods e.g.POST, PUT, PATCH and DELETE.Thus you don't need to add [ValidateAntiForgeryToken] *attribute to each and every action that requires it.
+             ***/
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +73,11 @@ namespace CMSWebUI
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Shop",
+                    pattern: "{controller=Shop}/{action=ProductList}/{id?}");
+
                 endpoints.MapRazorPages();
             });
         }
